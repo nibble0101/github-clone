@@ -5,5 +5,5 @@ const headerStyles = {
   'justify-content': 'center',
 
 };
-const header = document.getElementById('header');
-Object.assign(header.style, headerStyles);
+
+export default headerStyles;
