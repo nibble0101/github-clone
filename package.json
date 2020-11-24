@@ -8,5 +8,8 @@
   },
   "keywords": [],
   "author": "Joseph Mawa",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
 }
