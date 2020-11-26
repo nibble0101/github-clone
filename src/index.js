@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const url = 'https://api.github.com/graphql';
 
 const query = `
@@ -41,12 +39,65 @@ const options = {
   method: 'post',
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${process.env.GITHUB_API_KEY}`,
+    Authorization: `Bearer API_KEY`,
   },
   body: JSON.stringify({
     query,
   }),
 };
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+function formatTimeDelta(date) {
+  const SECOND = 1 * 1000;
+  const MINUTE = 60 * SECOND;
+  const HOUR = 60 * MINUTE;
+  const DAY = 24 * HOUR;
+  const MONTH = 30 * DAY;
+  const YEAR = 365 * MONTH;
+  const today = new Date();
+  const lastUpdatedOn = new Date(date);
+  const delta = today.getTime() - lastUpdatedOn.getTime();
+  if (delta < SECOND) {
+    return `Updated ${delta} milliseconds ago`;
+  }
+  if (delta < MINUTE) {
+    const seconds = parseInt(Math.floor(delta / SECOND), 10);
+    return `Updated ${seconds <= 1 ? `${seconds} second` : `${seconds} seconds`} ago`;
+  }
+  if (delta < HOUR) {
+    const minutes = parseInt(Math.floor(delta / MINUTE), 10);
+    return `Updated ${minutes <= 1 ? `${minutes} minute` : `${minutes} minutes`} ago`;
+  }
+  if (delta < DAY) {
+    const hours = parseInt(Math.floor(delta / HOUR), 10);
+    return `Updated ${hours <= 1 ? `${hours} hour` : `${hours} hours`} ago`;
+  }
+  if (delta < MONTH) {
+    const days = parseInt(Math.round(delta / DAY), 10);
+    return `Updated ${days <= 1 ? `${days} day` : `${days} days`} ago`;
+  }
+  if (delta < YEAR) {
+    const dateUpdated = lastUpdatedOn.getDate();
+    const month = lastUpdatedOn.getMonth();
+    return `Updated on ${dateUpdated} ${months[month]}`;
+  }
+  const dateUpdated = lastUpdatedOn.getDate();
+  const month = lastUpdatedOn.getMonth();
+  const year = lastUpdatedOn.getFullYear();
+  return `Updated on ${month} ${dateUpdated}, ${year}`;
+}
 
 function app(result) {
   const { data } = result;
@@ -66,7 +117,7 @@ function app(result) {
     { node: 'h2', propName: 'name', class: '' },
     { node: 'p', propName: '', class: '' },
     { node: 'p', propName: 'description', class: '' },
-    { node: 'p', propName: '', class: '' },
+    { node: 'p', propName: 'updatedAt', class: '' },
   ];
 
   nodes.forEach((node) => {
@@ -78,7 +129,11 @@ function app(result) {
       if (index === 0) {
         wrapperOne.forEach((obj) => {
           const element = document.createElement(obj.node);
-          element.innerText = node[obj.propName] ? node[obj.propName] : '';
+          if (obj.propName === 'updatedAt') {
+            element.innerText = node[obj.propName] ? formatTimeDelta(node[obj.propName]) : '';
+          } else {
+            element.innerText = node[obj.propName] ? node[obj.propName] : '';
+          }
           element.setAttribute('class', obj.class);
           innerWrapper.appendChild(element);
         });
