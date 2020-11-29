@@ -413,7 +413,11 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+#search-repo{
+  height: 30px;
   padding: 0px 12px;
+  border: 1px solid #444d56;
 }
 .btn {
   padding: 5px 16px;
