@@ -1,7 +1,5 @@
 require('dotenv').config();
 
-const url = 'https://api.github.com/graphql';
-
 const query = `
 {
   viewer {
@@ -42,4 +40,4 @@ const options = {
   }),
 };
 
-module.exports = { url, options };
+module.exports = { options };
