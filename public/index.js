@@ -9,6 +9,8 @@ const svgs = {
   linkRepos: ` <svg class="svg-icon svg-icon--pad" height="16" viewBox="0 0 16 16"  version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd"  d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg><span class="tab--padded-span"> Repositories 74 </span>`,
   linkProjects: ` <svg class="svg-icon svg-icon--pad" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.75 0A1.75 1.75 0 000 1.75v12.5C0 15.216.784 16 1.75 16h12.5A1.75 1.75 0 0016 14.25V1.75A1.75 1.75 0 0014.25 0H1.75zM1.5 1.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v12.5a.25.25 0 01-.25.25H1.75a.25.25 0 01-.25-.25V1.75zM11.75 3a.75.75 0 00-.75.75v7.5a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75zm-8.25.75a.75.75 0 011.5 0v5.5a.75.75 0 01-1.5 0v-5.5zM8 3a.75.75 0 00-.75.75v3.5a.75.75 0 001.5 0v-3.5A.75.75 0 008 3z"></path></svg><span class="tab--padded-span"> Projects </span>`,
   linkPackages: ` <svg class="svg-icon" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.878.392a1.75 1.75 0 00-1.756 0l-5.25 3.045A1.75 1.75 0 001 4.951v6.098c0 .624.332 1.2.872 1.514l5.25 3.045a1.75 1.75 0 001.756 0l5.25-3.045c.54-.313.872-.89.872-1.514V4.951c0-.624-.332-1.2-.872-1.514L8.878.392zM7.875 1.69a.25.25 0 01.25 0l4.63 2.685L8 7.133 3.245 4.375l4.63-2.685zM2.5 5.677v5.372c0 .09.047.171.125.216l4.625 2.683V8.432L2.5 5.677zm6.25 8.271l4.625-2.683a.25.25 0 00.125-.216V5.677L8.75 8.432v5.516z"></path></svg><span class="tab--padded-span"> Packages </span>`,
+  hambugerMenuIcon: `<svg height="24" class="svg-icon" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true"><path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path></svg>`,
+  signOutIcon: `<svg class="svg-icon" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M2 2.75C2 1.784 2.784 1 3.75 1h2.5a.75.75 0 010 1.5h-2.5a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h2.5a.75.75 0 010 1.5h-2.5A1.75 1.75 0 012 13.25V2.75zm10.44 4.5H6.75a.75.75 0 000 1.5h5.69l-1.97 1.97a.75.75 0 101.06 1.06l3.25-3.25a.75.75 0 000-1.06l-3.25-3.25a.75.75 0 10-1.06 1.06l1.97 1.97z"></path></svg>`,
 };
 
 const months = [
@@ -35,6 +37,14 @@ const languageColors = {
   Python: '#3572a5',
 
 };
+const dropdownMenuItems = [
+  'Dashboard',
+  'Pull requests',
+  'Issues',
+  'Marketplace',
+  'Explore',
+  'Settings',
+];
 function getLanguageStyles(language, colors = languageColors) {
   return `
     display: inline-block;
@@ -128,6 +138,8 @@ function app(result) {
   const name = document.querySelector('.name');
   const userName = document.querySelector('.user-name');
   const repos = document.querySelector('.repos');
+  const insertNameAndAvatar = document.querySelector('.insert-name-and-avatar');
+  insertNameAndAvatar.innerHTML = `<img src = ${data.viewer.avatarUrl} class = "avatar" width = 20 height = 20 alt = ${data.viewer.login} /> ${data.viewer.login}`;
   name.innerText = data.viewer.name;
   userName.innerText = data.viewer.login;
   const wrapperOne = [
@@ -201,6 +213,7 @@ const linkOverview = document.querySelector('.link--overview');
 const linkRepos = document.querySelector('.link--repos');
 const linkProjects = document.querySelector('.link--projects');
 const linkPackages = document.querySelector('.link--packages');
+const hamburgerMenuIcon = document.querySelector('.hamburger-menu-icon');
 
 githubLink.innerHTML = svgs.githubIcon;
 bellIcon.innerHTML = svgs.bellIcon;
@@ -209,7 +222,287 @@ linkOverview.innerHTML = svgs.linkOverview;
 linkRepos.innerHTML = svgs.linkRepos;
 linkProjects.innerHTML = svgs.linkProjects;
 linkPackages.innerHTML = svgs.linkPackages;
+hamburgerMenuIcon.innerHTML = svgs.hambugerMenuIcon;
+
+hamburgerMenuIcon.addEventListener('click', () => {
+  const dropdownMenu = document.querySelector('.drop-down-wrapper');
+  dropdownMenu.classList.toggle('visibility-toggler');
+});
+
+const newBtn = document.querySelector('.new');
+const search = document.querySelector('#search');
+
+search.addEventListener('submit', (event) => {
+  event.preventDefault();
+});
+newBtn.innerHTML = `${svgs.new} New`;
+
+const dropdownNav = document.querySelector('.dropdown-nav');
+dropdownMenuItems.forEach((item) => {
+  const anchor = document.createElement('a');
+  anchor.setAttribute('href', '#');
+  anchor.setAttribute('class', 'link link-dropdown');
+  anchor.innerText = item;
+  dropdownNav.append(anchor);
+});
+const linkWithAvatar = document.createElement('a');
+linkWithAvatar.setAttribute('href', '#');
+linkWithAvatar.setAttribute('class', 'link link-dropdown  insert-name-and-avatar');
+dropdownNav.appendChild(linkWithAvatar);
+
+const linkWithSignOutText = document.createElement('a');
+linkWithSignOutText.setAttribute('href', '#');
+linkWithSignOutText.setAttribute('class', 'link link-dropdown');
+linkWithSignOutText.innerHTML = `${svgs.signOutIcon} Sign out`;
+dropdownNav.appendChild(linkWithSignOutText);
 
 fetch('/fetch/data')
   .then((response) => response.json())
   .then(app);
+
+const styles = `
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #24292e;
+  height: 64px;
+  padding: 1em;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 1000;
+  color: white;
+}
+.header__div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header__div--right-flex-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: larger;
+}
+.header__div--inner-wrapper {
+  padding: 0px 12px;
+}
+.form {
+  padding: 1em;
+}
+.form__input {
+  border-radius: 5px;
+  width: 272px;
+  height: 30px;
+  border: 1px solid #444d56;
+  background-color: #24292e;
+  color: white;
+  padding: 0px 12px;
+  box-sizing: border-box;
+}
+.form__input::placeholder {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+}
+
+.nav {
+  display: flex;
+  list-style-type: none;
+}
+.link {
+  text-decoration: none;
+  color: #ffffff;
+  opacity: 1;
+}
+.link:hover {
+  opacity: 0.5;
+}
+.svg-icon {
+  fill: currentColor;
+}
+.link--block {
+  display: block;
+  padding: 0 1em;
+}
+.link--pad {
+  padding: 0px 12px;
+}
+.link--down-caret {
+  font-size: x-small;
+  width: 8px;
+  height: 4px;
+  position: relative;
+  bottom: 3px; /* Nudge caret symbol up for visual alignment */
+}
+.link--black-color {
+  color: black;
+  padding: 1em;
+  position: relative;
+  bottom: 3px;
+}
+.link--black-color:hover {
+  border-bottom: 2px solid #f9826c;
+}
+.main {
+  padding-top: 2em;
+}
+.main--pad {
+  padding: 0 2em;
+}
+.main--bottom-border {
+  width: 100%;
+  border-bottom: 1px solid #eaecef;
+}
+.tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+}
+.tab--padded-span {
+  padding: 1em;
+}
+
+.main-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+}
+.repos {
+  padding-left: 1em;
+}
+.outer-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em 0em;
+  border-bottom: 1px solid #eaecef;
+}
+p {
+  padding: 1em 0;
+}
+.blue-header {
+  color: #0366d6;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+}
+.description {
+  width: 50%;
+}
+.details--fontsize-14 {
+  font-size: 14px;
+  line-height: 21px;
+}
+.details--fontsize-12 {
+  font-size: 12px;
+  line-height: 18px;
+}
+.details--pad-right {
+  padding-right: 2em;
+}
+.search-repo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn {
+  padding: 5px 16px;
+  border-radius: 6px;
+}
+.new--green-bg {
+  background-color: #2ea44f;
+  color: white;
+  border-color: #2ea44f;
+}
+button:hover {
+  cursor: pointer;
+}
+#search-repo:focus {
+  outline-color: #0366d6;
+}
+
+.avatar--responsive {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+}
+.display-block-small-screen {
+  display: none;
+}
+.drop-down-wrapper {
+  position: absolute;
+  top: 64px;
+  left: 0px;
+  width: 100%;
+  background-color: #24292e;
+  z-index: 10;
+  display: none;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+.link-dropdown {
+  display: block;
+  padding: 1em;
+}
+.dropdown-nav form {
+  padding: 1em;
+}
+.avatar {
+  border-radius: 50%;
+}
+@media screen and (max-width: 850px) {
+  .header--display-none {
+    display: none;
+  }
+  .display-block-small-screen {
+    display: block;
+  }
+  div.visibility-toggler {
+    display: block;
+    height: auto;
+    overflow: visible;
+    opacity: 1;
+  }
+  .main-section{
+    flex-direction: column;
+  }
+  .avatar-wrapper{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+  .avatar-wrapper--left-item{
+    padding-left: 1em;
+  }
+}
+
+@media screen and (max-width: 700px){
+  .search-repo{
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .repos{
+    padding-left: 0;
+  }
+}
+`;
+
+const styleTag = document.createElement('style');
+styleTag.innerHTML = styles;
+
+// Add the styles before the first script tag
+
+const scriptTag = document.querySelector('script');
+scriptTag.parentNode.insertBefore(styleTag, scriptTag);
