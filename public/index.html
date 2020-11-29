@@ -3,15 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles.css" />
-    <script src="./index.js" defer  type="module" ></script>
+    <script src="./index.js" defer type="module"></script>
     <title>GitHub Clone</title>
   </head>
   <body class="body">
     <header class="header">
+      <div class="header-div display-block-small-screen">
+        <a class="link hamburger-menu-icon" href="#"></a>
+      </div>
       <div class="header__div">
         <a class="link github-link" href="#"></a>
-        <form class="form">
+        <form class="form header--display-none">
           <label for="search-input" class="form__label">
             <input
               id="search-input"
@@ -21,7 +23,7 @@
             />
           </label>
         </form>
-        <nav>
+        <nav class="header--display-none">
           <ul class="nav">
             <li class="nav__item">
               <a href="#" class="link link--block"> Pulls </a>
@@ -40,43 +42,82 @@
       </div>
       <div class="header__div header__div--right-flex-item">
         <a href="#" class="link link--pad link--bell-icon"></a>
-        <a href="#" class="link link--pad link--plus-icon"></a>
-        <a href="#" class="link link--pad">
-          <span> <img src="" alt="" width="20" height="20" class="avatar"> </span
+        <a
+          href="#"
+          class="link link--pad link--plus-icon header--display-none"
+        ></a>
+        <a href="#" class="link link--pad header--display-none">
+          <span>
+            <img src="" alt="" width="20" height="20" class="avatar" /> </span
           ><span class="link--down-caret">&#x25BC;</span>
         </a>
       </div>
+      <div class="drop-down-wrapper">
+        <nav class="dropdown-nav">
+          <form>
+            <label aria-hidden="true">
+              <input
+                type="text"
+                class="form__input form__input-pad"
+                placeholder="Search or jump to..."
+              />
+            </label>
+          </form>
+        </nav>
+      </div>
     </header>
     <main class="main">
-      <div class="sticky-div">
-        <span class="sticky-div__image"></span>
-        <div class="tabs">
-          <div class="tabs__overview">
-            <a href="#" class="link link--black-color link--overview">
-              
-            </a>
+      <div class="main--bottom-border">
+        <section class="sticky-div main--pad">
+          <span class="sticky-div__image"></span>
+          <div class="tabs">
+            <div class="tabs__overview">
+              <a href="#" class="link link--black-color link--overview"> </a>
+            </div>
+            <div class="tabs__repositories">
+              <a href="#" class="link link--black-color link--repos"></a>
+            </div>
+            <div class="tabs__projects">
+              <a href="#" class="link link--black-color link--projects"></a>
+            </div>
+            <div class="tabs__packages">
+              <a href="#" class="link link--black-color link--packages"></a>
+            </div>
           </div>
-          <div class="tabs__repositories">
-            <a href="#" class="link link--black-color link--repos"></a>
-          </div>
-          <div class="tabs__projects">
-            <a href="#" class="link link--black-color link--projects"></a>
-          </div>
-          <div class="tabs__packages">
-            <a href="#" class="link link--black-color link--packages"></a>
-          </div>
-        </div>
-      </section>
-      <section class="main-section">
-        <div class="">
-            <img class="avatar" src="" alt="" width="260" height="260">
+        </section>
+      </div>
+
+      <section class="main-section main--pad">
+        <div class="avatar-wrapper">
+          <img
+            class="avatar avatar--responsive"
+            src=""
+            alt=""
+            width="260"
+            height="260"
+          />
+          <div class="avatar-wrapper--left-item">
             <h1 class="name"></h1>
             <p class="user-name"></p>
+          </div>
         </div>
         <div class="repos">
-
+          <form id="search" class="search-repo">
+            <label for="search-repo">
+              <input
+                type="text"
+                id="search-repo"
+                placeholder="Find a repository..."
+              />
+            </label>
+            <div>
+              <button class="type btn">Type: All &#x25BC;</button>
+              <button class="language btn">Language: All &#x25BC;</button>
+              <button class="new btn new--green-bg"></button>
+            </div>
+          </form>
         </div>
       </section>
-      </div>
+    </main>
   </body>
 </html>
