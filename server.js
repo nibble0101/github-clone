@@ -1,6 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const fetch = require('node-fetch');
-const { url, options } = require('./config');
+const { options } = require('./config');
 
 const app = express();
 
@@ -13,14 +14,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/fetch/data', async (req, res) => {
-  const response = await fetch(url, options);
+  const response = await fetch(process.env.URL, options);
   const data = await response.json();
   res.json(data);
 });
 app.listen(PORT, () => {
   /* eslint-disable no-console */
-
-  console.log(`app listening on port ${PORT}`);
-
+  console.log(`server listening on port ${PORT}`);
   /* eslint-enable no-console */
 });
