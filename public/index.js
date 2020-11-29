@@ -445,6 +445,14 @@ button:hover {
 .display-block-small-screen {
   display: none;
 }
+.inner-wrapper-2 button{
+  padding: 3px 8px;
+}
+.inner-wrapper-2 span{
+  padding-left: 2px;
+  position: relative;
+  bottom: 3px; /* Nudge up for alignment */
+}
 .drop-down-wrapper {
   position: absolute;
   top: 64px;
