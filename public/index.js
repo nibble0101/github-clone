@@ -413,6 +413,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0px 12px;
 }
 .btn {
   padding: 5px 16px;
