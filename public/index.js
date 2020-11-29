@@ -417,7 +417,8 @@ p {
 #search-repo{
   height: 30px;
   padding: 0px 12px;
-  border: 1px solid #444d56;
+  border: 1px solid #eaecef;
+  border-radius: 5px;
 }
 .btn {
   padding: 5px 16px;
