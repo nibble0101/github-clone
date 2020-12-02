@@ -510,6 +510,9 @@ button:hover {
   .repos{
     padding-left: 0;
   }
+  .avatar--responsive{
+    max-width: auto;
+  }
 }
 `;
 
